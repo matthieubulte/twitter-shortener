@@ -4,6 +4,7 @@
 module Main where
 
 import           Control.Monad.IO.Class (liftIO)
+import           Credentials            as C
 import           Data.Aeson
 import           Data.ByteString        as B
 import           Data.ByteString.Lazy   as BL
@@ -13,18 +14,17 @@ import           GHC.Generics
 import           Network.HTTP.Conduit
 import           Network.HTTP.Types
 import           Web.Authenticate.OAuth
-import           Web.Scotty             (body, get, html, post, scotty, status)
+import           Web.Scotty             (body, html, post, scotty, status)
 
 
 oath :: OAuth
 oath = newOAuth { oauthServerName     = "api.twitter.com"
-                , oauthConsumerKey    = "????"
-                , oauthConsumerSecret = "????"
+                , oauthConsumerKey    = C.consumerKey
+                , oauthConsumerSecret = C.consumerSecret
                 }
 
 credentials :: Credential
-credentials = newCredential "????"
-                            "????"
+credentials = newCredential C.accessToken C.accessTokenSecret
 
 data Tweet = Tweet { text :: !T.Text } deriving (Show, Generic)
 instance FromJSON Tweet

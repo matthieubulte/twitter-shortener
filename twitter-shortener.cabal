@@ -16,7 +16,9 @@ build-type:          Simple
 cabal-version:       >=1.10
 
 executable twitter-shortener
-  main-is:             src/Main.hs
+  hs-source-dirs:      src
+  main-is:             Main.hs
+
   -- other-modules:
   -- other-extensions:
   build-depends:       base >=4.7 && <4.8
