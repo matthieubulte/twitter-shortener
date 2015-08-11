@@ -41,7 +41,7 @@ authRequest req = do
 
 tweet :: B.ByteString -> IO (Either String Tweet)
 tweet t = do
-  initReq      <- parseUrl "https://api.twitter.com/1.1/statuses/update.json?status=test%20status"
+  initReq      <- parseUrl "https://api.twitter.com/1.1/statuses/update.json"
   let postReq  = initReq { method = "POST" }
   let req      = urlEncodedBody [("status", t)] postReq
   res          <- authRequest req
